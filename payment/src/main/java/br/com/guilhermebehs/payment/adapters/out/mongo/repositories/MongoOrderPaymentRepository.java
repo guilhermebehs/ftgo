@@ -1,7 +1,7 @@
 package br.com.guilhermebehs.payment.adapters.out.mongo.repositories;
 
-import br.com.guilhermebehs.payment.adapters.out.mongo.collections.OrderPaymentDocument;
-import br.com.guilhermebehs.payment.adapters.out.mongo.mappers.OrderPaymentDocumentMapper;
+import br.com.guilhermebehs.payment.adapters.out.mongo.collections.OrderPaymentCollection;
+import br.com.guilhermebehs.payment.adapters.out.mongo.mappers.OrderPaymentCollectionMapper;
 import br.com.guilhermebehs.payment.domain.entities.OrderPayment;
 import br.com.guilhermebehs.payment.domain.ports.repositories.OrderPaymentRepository;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -20,14 +20,14 @@ public class MongoOrderPaymentRepository implements OrderPaymentRepository {
 
     @Override
     public void save(OrderPayment orderPayment) {
-        mongoTemplate.save(OrderPaymentDocumentMapper.fromOrderPayment(orderPayment));
+        mongoTemplate.save(OrderPaymentCollectionMapper.fromOrderPayment(orderPayment));
     }
 
     @Override
     public Optional<OrderPayment> getByOrderId(String orderId) {
-        var orderPaymentDocument = mongoTemplate.findById(orderId, OrderPaymentDocument.class);
-        if(orderPaymentDocument == null)
+        var orderPaymentCollection = mongoTemplate.findById(orderId, OrderPaymentCollection.class);
+        if(orderPaymentCollection == null)
            return Optional.empty();
-        return Optional.of(OrderPaymentDocumentMapper.toOrderPayment(orderPaymentDocument));
+        return Optional.of(OrderPaymentCollectionMapper.toOrderPayment(orderPaymentCollection));
     }
 }

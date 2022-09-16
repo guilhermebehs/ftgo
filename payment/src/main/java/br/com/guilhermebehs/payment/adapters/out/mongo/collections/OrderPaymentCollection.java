@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
-public class OrderPaymentDocument {
+public class OrderPaymentCollection {
 
     @Id
     private String orderId;

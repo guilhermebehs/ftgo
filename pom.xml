@@ -11,6 +11,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>payment</module>
+		<module>kitchen</module>
 	</modules>
 	<groupId>br.com.guilhermebehs</groupId>
 	<artifactId>ftgo</artifactId>
@@ -32,6 +33,11 @@
 		<dependency>
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
 		</dependency>
 
 		<dependency>
