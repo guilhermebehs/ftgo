@@ -12,5 +12,11 @@ public class ProductCollectionId {
     private String kitchen;
 
 
-
+    @Override
+    public String toString() {
+        return "ProductCollectionId{" +
+                "product='" + product + '\'' +
+                ", kitchen='" + kitchen + '\'' +
+                '}';
+    }
 }

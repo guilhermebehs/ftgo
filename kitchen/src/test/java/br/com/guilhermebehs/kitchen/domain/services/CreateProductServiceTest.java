@@ -50,7 +50,7 @@ class CreateProductServiceTest {
         assertThat(productCreated.getProductId().getProduct()).isEqualTo(productDtoMock.getDescription());
         assertThat(productCreated.getProductId().getKitchen()).isEqualTo(productDtoMock.getKitchen());
         assertThat(productCreated.getAvailableAmount()).isEqualTo(productDtoMock.getAvailableAmount());
-        assertThat(productCreated.isActive()).isEqualTo(productDtoMock.isActive());
+        assertThat(productCreated.isActive()).isEqualTo(productDtoMock.getIsActive().booleanValue());
         assertThat(productCreated.getBookedAmount()).isEqualTo(0);
     }
 
