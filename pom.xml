@@ -12,6 +12,7 @@
 	<modules>
 		<module>payment</module>
 		<module>kitchen</module>
+		<module>service_discovery</module>
 	</modules>
 	<groupId>br.com.guilhermebehs</groupId>
 	<artifactId>ftgo</artifactId>
