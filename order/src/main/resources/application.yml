@@ -1,0 +1,26 @@
+server:
+  port: 8762
+spring:
+  application:
+    name: order-ms
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: order-ms
+      auto-index-creation: false
+  kafka:
+    producer:
+      bootstrap-servers: localhost:29092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      bootstrap-servers: localhost:29092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+eureka:
+  server:
+    enableSelfPreservation: false
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
