@@ -5,6 +5,7 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 
 @Getter
 public class Order {
@@ -16,11 +17,12 @@ public class Order {
     private LocalDateTime deliveryDateForecast;
     private LocalDateTime deliveryDate;
     private OrderStatus orderStatus;
+    private String kitchen;
     private List<OrderItem> items;
 
 
     public Order(String orderId, String customerName, Address customerAddress, LocalDateTime orderCreatedOn,
-                 LocalDateTime deliveryDateForecast, List<OrderItem> items)
+                 LocalDateTime deliveryDateForecast, String kitchen, List<OrderItem> items)
     {
 
         if(deliveryDateForecast.isBefore(orderCreatedOn))
@@ -32,6 +34,7 @@ public class Order {
         this.orderCreatedOn = orderCreatedOn;
         this.deliveryDateForecast = deliveryDateForecast;
         this.orderStatus = OrderStatus.PAYMENT_PENDING;
+        this.kitchen = kitchen;
         this.items = items;
     }
 
@@ -59,6 +62,11 @@ public class Order {
             throw new IllegalStateException("order status not allowed in this step");
         deliveryDate = LocalDateTime.now();
         orderStatus = OrderStatus.DELIVERED;
+    }
+
+
+    public static String generateId(){
+        return String.valueOf(System.currentTimeMillis() + (long)new Random().nextInt(1000));
     }
 
 }

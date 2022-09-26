@@ -48,6 +48,7 @@ class OrderTest {
                     address,
                     LocalDateTime.now(),
                     LocalDateTime.now().plusHours(1),
+                    "some kitchen",
                     items
                     );
         });
@@ -78,6 +79,7 @@ class OrderTest {
                     address,
                     LocalDateTime.now(),
                     LocalDateTime.now().minusSeconds(1),
+                    "some kitchen",
                     items
             );
         });
@@ -111,6 +113,7 @@ class OrderTest {
                     address,
                     LocalDateTime.now(),
                     LocalDateTime.now().plusHours(1),
+                   "some kitchen",
                     items
             );
 
@@ -143,6 +146,7 @@ class OrderTest {
                     address,
                     LocalDateTime.now(),
                     LocalDateTime.now().plusHours(1),
+                    "some kitchen",
                     items
             );
             changeOrderStatus(order, OrderStatus.CANCELED);
@@ -177,6 +181,7 @@ class OrderTest {
                     address,
                     LocalDateTime.now(),
                     LocalDateTime.now().plusHours(1),
+                    "some kitchen",
                     items
             );
             changeOrderStatus(order, OrderStatus.CANCELED);
@@ -211,6 +216,7 @@ class OrderTest {
                     address,
                     LocalDateTime.now(),
                     LocalDateTime.now().plusHours(1),
+                    "some kitchen",
                     items
             );
             changeOrderStatus(order, OrderStatus.CANCELED);
