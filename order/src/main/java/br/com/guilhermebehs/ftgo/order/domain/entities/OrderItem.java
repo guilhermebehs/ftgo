@@ -11,8 +11,6 @@ public class OrderItem {
     private Double price;
     private Integer amount;
 
-
-
     public void changeAmount(Integer amount){
         if(amount == null || amount.intValue() < 1)
             throw new IllegalStateException("item amount must be equal or greater than 1");

@@ -1,5 +1,6 @@
 package br.com.guilhermebehs.ftgo.order.domain.services;
 
+import br.com.guilhermebehs.ftgo.order.domain.entities.Address;
 import br.com.guilhermebehs.ftgo.order.domain.entities.Order;
 import br.com.guilhermebehs.ftgo.order.domain.entities.OrderItem;
 import br.com.guilhermebehs.ftgo.order.domain.entities.dtos.CreateOrderDto;
@@ -10,6 +11,7 @@ import br.com.guilhermebehs.ftgo.order.domain.ports.ValidateOrderPaymentNotifica
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.stream.Collectors;
 
 @Service
 public class CreateOrderService {
@@ -29,14 +31,29 @@ public class CreateOrderService {
     public String create(CreateOrderDto createOrderDto){
 
         var orderId = Order.generateId();
+
+        var address = new Address(
+                createOrderDto.getCustomerAddress().getDescription(),
+                createOrderDto.getCustomerAddress().getNeighbourhood(),
+                createOrderDto.getCustomerAddress().getComplement(),
+                createOrderDto.getCustomerAddress().getCity(),
+                createOrderDto.getCustomerAddress().getState(),
+                createOrderDto.getCustomerAddress().getCountry()
+        );
+
+        var items = createOrderDto.getItems()
+                .stream()
+                .map(item -> new OrderItem(item.getDescription(), item.getPrice(), item.getAmount()))
+                .collect(Collectors.toList());
+
         var newOrder = new Order(
                 orderId,
                 createOrderDto.getCustomerName(),
-                createOrderDto.getCustomerAddress(),
+                address,
                 LocalDateTime.now(),
                 createOrderDto.getDeliveryDateForecast(),
                 createOrderDto.getKitchen(),
-                createOrderDto.getItems()
+                items
         );
 
 
