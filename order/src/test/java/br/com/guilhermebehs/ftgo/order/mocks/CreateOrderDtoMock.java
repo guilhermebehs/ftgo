@@ -31,7 +31,8 @@ public class CreateOrderDtoMock {
                 address,
                 LocalDateTime.now().plusHours(1),
                 items,
-                "some kitchen"
+                "some kitchen",
+                "123456"
         );
 
     }

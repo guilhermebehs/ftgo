@@ -19,10 +19,12 @@ public class Order {
     private OrderStatus orderStatus;
     private String kitchen;
     private List<OrderItem> items;
+    private String creditCard;
+
 
 
     public Order(String orderId, String customerName, Address customerAddress, LocalDateTime orderCreatedOn,
-                 LocalDateTime deliveryDateForecast, String kitchen, List<OrderItem> items)
+                 LocalDateTime deliveryDateForecast, String kitchen, List<OrderItem> items, String creditCard)
     {
 
         if(deliveryDateForecast.isBefore(orderCreatedOn))
@@ -36,6 +38,7 @@ public class Order {
         this.orderStatus = OrderStatus.PAYMENT_PENDING;
         this.kitchen = kitchen;
         this.items = items;
+        this.creditCard = creditCard;
     }
 
 

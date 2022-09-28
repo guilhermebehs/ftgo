@@ -1,5 +1,6 @@
 package br.com.guilhermebehs.ftgo.order.domain.services;
 
+import br.com.guilhermebehs.ftgo.order.domain.commands.ValidateOrderPaymentCommand;
 import br.com.guilhermebehs.ftgo.order.domain.entities.Address;
 import br.com.guilhermebehs.ftgo.order.domain.entities.Order;
 import br.com.guilhermebehs.ftgo.order.domain.entities.OrderItem;
@@ -53,7 +54,8 @@ public class CreateOrderService {
                 LocalDateTime.now(),
                 createOrderDto.getDeliveryDateForecast(),
                 createOrderDto.getKitchen(),
-                items
+                items,
+                createOrderDto.getCreditCard()
         );
 
 
@@ -68,7 +70,15 @@ public class CreateOrderService {
 
         orderRepository.create(newOrder);
 
-        validateOrderPaymentNotificationService.notify(newOrder);
+        var validateOrderPaymentCommand = new ValidateOrderPaymentCommand(
+                newOrder.getOrderId(),
+                newOrder.getCreditCard(),
+                newOrder.calculateTotalPrice(),
+                newOrder.getCustomerName(),
+                LocalDateTime.now()
+        );
+
+        validateOrderPaymentNotificationService.notify(validateOrderPaymentCommand);
 
         return orderId;
 

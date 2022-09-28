@@ -544,10 +544,79 @@ class HttpOrderTest {
                     .andExpect(content().string(containsString("invalid value for 'kitchen'")));;
         }
 
+
+        @Test
+        @DisplayName("should return 400 when credit_card is null")
+        public void shouldReturn400WhenCreditCardIsNull() throws Exception {
+
+            var invalidOrder = CreateOrderDtoMock.mock();
+            setField(invalidOrder, "creditCard", null);
+
+            var body = mapper.writeValueAsString(invalidOrder);
+
+            mvc.perform(post("/orders")
+                            .content(body)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isBadRequest())
+                    .andExpect(content().string(containsString("invalid value for 'credit_card'")));;
+        }
+
+
+        @Test
+        @DisplayName("should return 400 when credit_card is empty")
+        public void shouldReturn400WhenCreditCardIsEmpty() throws Exception {
+
+            var invalidOrder = CreateOrderDtoMock.mock();
+            setField(invalidOrder, "creditCard","");
+
+            var body = mapper.writeValueAsString(invalidOrder);
+
+            mvc.perform(post("/orders")
+                            .content(body)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isBadRequest())
+                    .andExpect(content().string(containsString("invalid value for 'credit_card'")));;
+        }
+
+
+        @Test
+        @DisplayName("should return 400 when credit_card is less than 4")
+        public void shouldReturn400WhenCreditCardIsLessThan4() throws Exception {
+
+            var invalidOrder = CreateOrderDtoMock.mock();
+            setField(invalidOrder, "creditCard","123");
+
+            var body = mapper.writeValueAsString(invalidOrder);
+
+            mvc.perform(post("/orders")
+                            .content(body)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isBadRequest())
+                    .andExpect(content().string(containsString("'credit_card' length must be between 4 and 8")));;
+        }
+
+
+        @Test
+        @DisplayName("should return 400 when credit_card is greater than 8")
+        public void shouldReturn400WhenCreditCardIsGreaterThan8() throws Exception {
+
+            var invalidOrder = CreateOrderDtoMock.mock();
+            setField(invalidOrder, "creditCard","123456789");
+
+            var body = mapper.writeValueAsString(invalidOrder);
+
+            mvc.perform(post("/orders")
+                            .content(body)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isBadRequest())
+                    .andExpect(content().string(containsString("'credit_card' length must be between 4 and 8")));;
+        }
+
     }
-
-
-
 
 
 }

@@ -49,7 +49,8 @@ class OrderTest {
                     LocalDateTime.now(),
                     LocalDateTime.now().plusHours(1),
                     "some kitchen",
-                    items
+                    items,
+                    "123456"
                     );
         });
     }
@@ -80,7 +81,8 @@ class OrderTest {
                     LocalDateTime.now(),
                     LocalDateTime.now().minusSeconds(1),
                     "some kitchen",
-                    items
+                    items,
+                    "123456"
             );
         });
 
@@ -114,7 +116,8 @@ class OrderTest {
                     LocalDateTime.now(),
                     LocalDateTime.now().plusHours(1),
                    "some kitchen",
-                    items
+                    items,
+                   "123456"
             );
 
            assertThat(order.calculateTotalPrice()).isEqualTo(40D);
@@ -147,7 +150,8 @@ class OrderTest {
                     LocalDateTime.now(),
                     LocalDateTime.now().plusHours(1),
                     "some kitchen",
-                    items
+                    items,
+                    "123456"
             );
             changeOrderStatus(order, OrderStatus.CANCELED);
             order.setOrderStatusToPreparing();
@@ -182,7 +186,8 @@ class OrderTest {
                     LocalDateTime.now(),
                     LocalDateTime.now().plusHours(1),
                     "some kitchen",
-                    items
+                    items,
+                    "123456"
             );
             changeOrderStatus(order, OrderStatus.CANCELED);
             order.setOrderStatusToPaymentRejected();
@@ -217,7 +222,8 @@ class OrderTest {
                     LocalDateTime.now(),
                     LocalDateTime.now().plusHours(1),
                     "some kitchen",
-                    items
+                    items,
+                    "123456"
             );
             changeOrderStatus(order, OrderStatus.CANCELED);
             order.setOrderStatusToDelivered();
