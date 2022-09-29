@@ -1,5 +1,6 @@
 package br.com.guilhermebehs.ftgo.order.adapters.in.http.errors;
 
+import br.com.guilhermebehs.ftgo.order.domain.entities.exceptions.InternalErrorException;
 import br.com.guilhermebehs.ftgo.order.domain.entities.exceptions.InvalidItemException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -66,4 +67,11 @@ class ErrorHandlingControllerAdvice {
         return error;
     }
 
+    @ExceptionHandler(InternalErrorException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    ValidationErrorResponse onInternalErrorException(InternalErrorException e) {
+        ValidationErrorResponse error = new ValidationErrorResponse();
+        return error;
+    }
 }
