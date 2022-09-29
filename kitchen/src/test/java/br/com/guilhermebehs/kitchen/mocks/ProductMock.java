@@ -11,4 +11,12 @@ public class ProductMock {
 
         return new Product(productId, true, 10, 0);
     }
+
+
+    public static Product mockWithBookedAmount(){
+
+        var productId = new ProductId("Some product", "Some kitchen");
+
+        return new Product(productId, true, 10, 1);
+    }
 }

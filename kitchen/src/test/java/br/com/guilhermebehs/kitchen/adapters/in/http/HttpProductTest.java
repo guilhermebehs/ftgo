@@ -1,8 +1,7 @@
 package br.com.guilhermebehs.kitchen.adapters.in.http;
 
 import br.com.guilhermebehs.kitchen.domain.exceptions.ProductNotFoundException;
-import br.com.guilhermebehs.kitchen.domain.services.CreateProductService;
-import br.com.guilhermebehs.kitchen.domain.services.FindProductService;
+import br.com.guilhermebehs.kitchen.domain.services.*;
 import br.com.guilhermebehs.kitchen.mocks.FindProductDtoMock;
 import br.com.guilhermebehs.kitchen.mocks.ProductDtoMock;
 import br.com.guilhermebehs.kitchen.mocks.ProductMock;
@@ -20,8 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -40,6 +38,15 @@ class HttpProductTest {
 
     @MockBean
     private FindProductService findProductService;
+
+    @MockBean
+    private BookProductAmountService bookProductAmountService;
+
+    @MockBean
+    private CancelBookedProductAmountService cancelBookedProductAmountService;
+
+    @MockBean
+    private ConfirmBookedProductAmountService confirmBookedProductAmountService;
 
     @BeforeEach
     void setUp() {
@@ -193,4 +200,53 @@ class HttpProductTest {
                             containsString("product not found")));
         }
     }
+
+
+    @Nested
+    @DisplayName("Patch /products/{productDescription}/kitchens/{kitchenDescription}/amount/{amount}/book-amount")
+        class PatchBookAmount {
+
+        @Test
+        @DisplayName("should return 204 when update occurs correctly")
+        public void shouldReturn204WhenUpdateOccursCorrectly() throws Exception {
+            mvc.perform(patch("/products/some_product_description/kitchens/some_kitchen_description/amount/1/book-amount")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isNoContent());
+        }
+
+    }
+
+    @Nested
+    @DisplayName("Patch /products/{productDescription}/kitchens/{kitchenDescription}/amount/{amount}/confirm-booked-amount")
+    class PatchConfirmBookedAmount {
+
+        @Test
+        @DisplayName("should return 204 when update occurs correctly")
+        public void shouldReturn204WhenUpdateOccursCorrectly() throws Exception {
+            mvc.perform(patch("/products/some_product_description/kitchens/some_kitchen_description/amount/1/confirm-booked-amount")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isNoContent());
+        }
+
+    }
+
+
+
+    @Nested
+    @DisplayName("Patch /products/{productDescription}/kitchens/{kitchenDescription}/amount/{amount}/cancel-booked-amount")
+    class PatchCancelBookedAmount {
+
+        @Test
+        @DisplayName("should return 204 when update occurs correctly")
+        public void shouldReturn204WhenUpdateOccursCorrectly() throws Exception {
+            mvc.perform(patch("/products/some_product_description/kitchens/some_kitchen_description/amount/1/cancel-booked-amount")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isNoContent());
+        }
+
+    }
+
 }
