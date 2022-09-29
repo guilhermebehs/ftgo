@@ -13,5 +13,6 @@ eureka:
       defaultZone: http://localhost:8761/eureka
   instance:
     preferIpAddress: true
+    hostname: kitchen-ms
 server:
-  port: 8080
+  port: 8081
