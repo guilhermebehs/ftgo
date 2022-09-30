@@ -17,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.Optional;
 
 import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.PATCH;
 
 @Service
 public class HttpKitchenService implements KitchenService {
@@ -65,4 +66,37 @@ public class HttpKitchenService implements KitchenService {
         }
 
     }
+
+    @Override
+    public void bookProductAmount(String name, String kitchen, int amount) {
+
+        var uri = UriComponentsBuilder.fromUriString(kitchenMsHost)
+                .pathSegment("products")
+                .pathSegment(name)
+                .pathSegment("kitchens")
+                .pathSegment(kitchen)
+                .pathSegment("amount")
+                .pathSegment(String.valueOf(amount))
+                .pathSegment("book-amount")
+                .build().toUri();
+
+        var headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        try {
+            var findProductDto = restTemplate
+                    .exchange(uri,PATCH, new HttpEntity<>(headers), FindProductDto.class)
+                    .getBody();
+
+
+        }
+
+        catch (Exception e) {
+            logger.error(e.getMessage());
+            throw new InternalErrorException();
+        }
+
+    }
+
+
 }

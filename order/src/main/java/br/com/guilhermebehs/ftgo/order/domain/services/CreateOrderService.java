@@ -80,6 +80,10 @@ public class CreateOrderService {
 
         validateOrderPaymentNotificationService.notify(validateOrderPaymentCommand);
 
+        for(OrderItem orderItem: newOrder.getItems()) {
+            kitchenService.bookProductAmount(orderItem.getDescription(), createOrderDto.getKitchen(), orderItem.getAmount());
+        }
+
         return orderId;
 
     }
