@@ -8,4 +8,5 @@ public interface KitchenService {
 
     Optional<FindProductDto> getProductByNameAndKitchen(String name, String kitchen);
     void bookProductAmount(String name, String kitchen, int amount);
+    void confirmBookedProductAmount(String name, String kitchen, int amount);
 }

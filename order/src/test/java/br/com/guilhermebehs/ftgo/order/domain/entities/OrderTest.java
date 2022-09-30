@@ -154,7 +154,7 @@ class OrderTest {
                     "123456"
             );
             changeOrderStatus(order, OrderStatus.CANCELED);
-            order.setOrderStatusToPreparing();
+            order.preparing();
         });
 
         assertThat(exception.getMessage()).isEqualTo("order status not allowed in this step");
@@ -190,7 +190,7 @@ class OrderTest {
                     "123456"
             );
             changeOrderStatus(order, OrderStatus.CANCELED);
-            order.setOrderStatusToPaymentRejected();
+            order.paymentRejected();
         });
 
         assertThat(exception.getMessage()).isEqualTo("order status not allowed in this step");
@@ -226,7 +226,7 @@ class OrderTest {
                     "123456"
             );
             changeOrderStatus(order, OrderStatus.CANCELED);
-            order.setOrderStatusToDelivered();
+            order.delivered();
         });
 
         assertThat(exception.getMessage()).isEqualTo("order status not allowed in this step");
