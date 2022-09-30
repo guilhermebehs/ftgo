@@ -1,8 +1,11 @@
 package br.com.guilhermebehs.payment.domain.ports.services;
 
-import br.com.guilhermebehs.payment.domain.entities.OrderPayment;
+import br.com.guilhermebehs.payment.domain.events.OrderPaymentApprovedEvent;
+import br.com.guilhermebehs.payment.domain.events.OrderPaymentDeniedEvent;
 
 public interface OrderPaymentResultNotificationService {
 
-    void notify(OrderPayment orderPayment);
+    void notifyApproved(OrderPaymentApprovedEvent orderPaymentApprovedEvent);
+
+    void notifyDenied(OrderPaymentDeniedEvent orderPaymentDeniedEvent);
 }

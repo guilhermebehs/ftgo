@@ -5,7 +5,6 @@ import br.com.guilhermebehs.payment.domain.mappers.OrderPaymentMapper;
 import br.com.guilhermebehs.payment.domain.ports.repositories.OrderPaymentRepository;
 import br.com.guilhermebehs.payment.domain.ports.services.CardValidatorService;
 import br.com.guilhermebehs.payment.domain.ports.services.OrderPaymentResultNotificationService;
-import br.com.guilhermebehs.payment.domain.services.ValidateOrderPaymentService;
 import br.com.guilhermebehs.payment.mocks.OrderPaymentMock;
 import br.com.guilhermebehs.payment.mocks.ValidateOrderPaymentCommandMock;
 import org.junit.jupiter.api.BeforeEach;
@@ -76,7 +75,9 @@ public class ValidateOrderPaymentServiceTest {
             verify(orderPaymentRepository, times(1)).getByOrderId(commandMock.getOrderId());
             verify(orderPaymentRepository, times(1)).save(orderPaymentMock);
             verify(orderPaymentMapper, times(1)).fromValidateOrderPaymentCommand(commandMock);
-            verify(orderPaymentResultNotificationService, times(1)).notify(orderPaymentMock);
+            verify(orderPaymentResultNotificationService, times(0)).notifyDenied(any());
+            verify(orderPaymentResultNotificationService, times(1)).notifyApproved(any());
+
             verify(cardValidatorService, times(1)).isCreditCardValid(commandMock.getCardNumber());
 
         }
@@ -100,7 +101,9 @@ public class ValidateOrderPaymentServiceTest {
             verify(orderPaymentRepository, times(1)).getByOrderId(commandMock.getOrderId());
             verify(orderPaymentRepository, times(1)).save(orderPaymentMock);
             verify(orderPaymentMapper, times(1)).fromValidateOrderPaymentCommand(commandMock);
-            verify(orderPaymentResultNotificationService, times(1)).notify(orderPaymentMock);
+            verify(orderPaymentResultNotificationService, times(1)).notifyDenied(any());
+            verify(orderPaymentResultNotificationService, times(0)).notifyApproved(any());
+
             verify(cardValidatorService, times(1)).isCreditCardValid(commandMock.getCardNumber());
 
         }
@@ -133,8 +136,10 @@ public class ValidateOrderPaymentServiceTest {
 
                 verify(orderPaymentRepository, times(1)).getByOrderId(commandMock.getOrderId());
                 verify(orderPaymentRepository, times(1)).save(orderPaymentMock);
+                verify(orderPaymentResultNotificationService, times(0)).notifyDenied(any());
+                verify(orderPaymentResultNotificationService, times(1)).notifyApproved(any());
+
                 verify(orderPaymentMapper, times(0)).fromValidateOrderPaymentCommand(commandMock);
-                verify(orderPaymentResultNotificationService, times(1)).notify(orderPaymentMock);
                 verify(cardValidatorService, times(1)).isCreditCardValid(commandMock.getCardNumber());
 
             }
@@ -161,7 +166,9 @@ public class ValidateOrderPaymentServiceTest {
                 verify(orderPaymentRepository, times(1)).getByOrderId(commandMock.getOrderId());
                 verify(orderPaymentRepository, times(1)).save(orderPaymentMock);
                 verify(orderPaymentMapper, times(0)).fromValidateOrderPaymentCommand(commandMock);
-                verify(orderPaymentResultNotificationService, times(1)).notify(orderPaymentMock);
+                verify(orderPaymentResultNotificationService, times(1)).notifyDenied(any());
+                verify(orderPaymentResultNotificationService, times(0)).notifyApproved(any());
+
                 verify(cardValidatorService, times(1)).isCreditCardValid(commandMock.getCardNumber());
 
             }
@@ -191,8 +198,9 @@ public class ValidateOrderPaymentServiceTest {
 
                 verify(orderPaymentRepository, times(1)).getByOrderId(commandMock.getOrderId());
                 verify(orderPaymentRepository, times(1)).save(orderPaymentMock);
+                verify(orderPaymentResultNotificationService, times(0)).notifyDenied(any());
+                verify(orderPaymentResultNotificationService, times(1)).notifyApproved(any());
                 verify(orderPaymentMapper, times(0)).fromValidateOrderPaymentCommand(commandMock);
-                verify(orderPaymentResultNotificationService, times(1)).notify(orderPaymentMock);
                 verify(cardValidatorService, times(1)).isCreditCardValid(commandMock.getCardNumber());
 
             }
@@ -221,8 +229,9 @@ public class ValidateOrderPaymentServiceTest {
 
                 verify(orderPaymentRepository, times(1)).getByOrderId(commandMock.getOrderId());
                 verify(orderPaymentRepository, times(1)).save(orderPaymentMock);
+                verify(orderPaymentResultNotificationService, times(1)).notifyDenied(any());
+                verify(orderPaymentResultNotificationService, times(0)).notifyApproved(any());
                 verify(orderPaymentMapper, times(0)).fromValidateOrderPaymentCommand(commandMock);
-                verify(orderPaymentResultNotificationService, times(1)).notify(orderPaymentMock);
                 verify(cardValidatorService, times(1)).isCreditCardValid(commandMock.getCardNumber());
 
             }

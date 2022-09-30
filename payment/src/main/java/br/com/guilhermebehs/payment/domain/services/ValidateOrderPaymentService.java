@@ -1,12 +1,18 @@
 package br.com.guilhermebehs.payment.domain.services;
 
-import br.com.guilhermebehs.payment.domain.entities.OrderPayment;
 import br.com.guilhermebehs.payment.domain.commands.ValidateOrderPaymentCommand;
+import br.com.guilhermebehs.payment.domain.entities.OrderPayment;
+import br.com.guilhermebehs.payment.domain.events.OrderPaymentApprovedEvent;
+import br.com.guilhermebehs.payment.domain.events.OrderPaymentDeniedEvent;
 import br.com.guilhermebehs.payment.domain.mappers.OrderPaymentMapper;
 import br.com.guilhermebehs.payment.domain.ports.repositories.OrderPaymentRepository;
 import br.com.guilhermebehs.payment.domain.ports.services.CardValidatorService;
 import br.com.guilhermebehs.payment.domain.ports.services.OrderPaymentResultNotificationService;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+
+import static br.com.guilhermebehs.payment.domain.enums.ApprovalStatus.APPROVED;
 
 @Service
 public class ValidateOrderPaymentService {
@@ -47,7 +53,13 @@ public class ValidateOrderPaymentService {
           orderPayment.denyPayment();
 
         orderPaymentRepository.save(orderPayment);
-        orderPaymentResultNotificationService.notify(orderPayment);
+
+        if(orderPayment.getApprovalStatus().equals(APPROVED))
+            orderPaymentResultNotificationService.notifyApproved(
+                    new OrderPaymentApprovedEvent(orderPayment.getOrderId(), LocalDateTime.now()));
+        else
+            orderPaymentResultNotificationService.notifyDenied(
+                    new OrderPaymentDeniedEvent(orderPayment.getOrderId(), LocalDateTime.now()));
     }
 
     private void validateAndSetPossibleChanges(OrderPayment orderPayment,
