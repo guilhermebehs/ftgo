@@ -68,7 +68,7 @@ public class CreateOrderService {
                 throw new InvalidItemException("Product '"+orderItem.getDescription()+"' not available");
         }
 
-        orderRepository.create(newOrder);
+        orderRepository.save(newOrder);
 
         var validateOrderPaymentCommand = new ValidateOrderPaymentCommand(
                 newOrder.getOrderId(),
