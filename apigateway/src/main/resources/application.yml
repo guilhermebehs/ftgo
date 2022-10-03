@@ -1,0 +1,23 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: api-gateway
+  security:
+    user:
+      name: guilherme
+      password: microservices
+  cloud:
+    gateway:
+      routes:
+        - id: order-ms
+          uri: http://localhost:8763
+          predicates:
+            - Path=/orders
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    preferIpAddress: true
+

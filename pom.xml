@@ -10,6 +10,7 @@
 	</parent>
 	<packaging>pom</packaging>
 	<modules>
+		<module>apigateway</module>
 		<module>payment</module>
 		<module>kitchen</module>
 		<module>order</module>
