@@ -1,7 +1,7 @@
 package br.com.guilhermebehs.kitchen.mocks;
 
-import br.com.guilhermebehs.kitchen.adapters.out.collections.ProductId;
-import br.com.guilhermebehs.kitchen.domain.entities.Product;
+import br.com.guilhermebehs.ftgo.kitchen.adapters.out.collections.ProductId;
+import br.com.guilhermebehs.ftgo.kitchen.domain.entities.Product;
 
 public class ProductMock {
 

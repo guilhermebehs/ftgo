@@ -1,7 +1,8 @@
 package br.com.guilhermebehs.kitchen.adapters.in.http;
 
-import br.com.guilhermebehs.kitchen.domain.exceptions.ProductNotFoundException;
-import br.com.guilhermebehs.kitchen.domain.services.*;
+import br.com.guilhermebehs.ftgo.kitchen.adapters.in.http.HttpProduct;
+import br.com.guilhermebehs.ftgo.kitchen.domain.exceptions.ProductNotFoundException;
+import br.com.guilhermebehs.ftgo.kitchen.domain.services.*;
 import br.com.guilhermebehs.kitchen.mocks.FindProductDtoMock;
 import br.com.guilhermebehs.kitchen.mocks.ProductDtoMock;
 import br.com.guilhermebehs.kitchen.mocks.ProductMock;

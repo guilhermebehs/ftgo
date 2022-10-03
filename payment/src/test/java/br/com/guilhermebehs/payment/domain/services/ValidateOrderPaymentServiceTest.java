@@ -1,10 +1,11 @@
 package br.com.guilhermebehs.payment.domain.services;
 
-import br.com.guilhermebehs.payment.domain.entities.OrderPayment;
-import br.com.guilhermebehs.payment.domain.mappers.OrderPaymentMapper;
-import br.com.guilhermebehs.payment.domain.ports.repositories.OrderPaymentRepository;
-import br.com.guilhermebehs.payment.domain.ports.services.CardValidatorService;
-import br.com.guilhermebehs.payment.domain.ports.services.OrderPaymentResultNotificationService;
+import br.com.guilhermebehs.ftgo.payment.domain.entities.OrderPayment;
+import br.com.guilhermebehs.ftgo.payment.domain.mappers.OrderPaymentMapper;
+import br.com.guilhermebehs.ftgo.payment.domain.ports.repositories.OrderPaymentRepository;
+import br.com.guilhermebehs.ftgo.payment.domain.ports.services.CardValidatorService;
+import br.com.guilhermebehs.ftgo.payment.domain.ports.services.OrderPaymentResultNotificationService;
+import br.com.guilhermebehs.ftgo.payment.domain.services.ValidateOrderPaymentService;
 import br.com.guilhermebehs.payment.mocks.OrderPaymentMock;
 import br.com.guilhermebehs.payment.mocks.ValidateOrderPaymentCommandMock;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,8 +18,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Optional;
 
-import static br.com.guilhermebehs.payment.domain.enums.ApprovalStatus.APPROVED;
-import static br.com.guilhermebehs.payment.domain.enums.ApprovalStatus.DENIED;
+import static br.com.guilhermebehs.ftgo.payment.domain.enums.ApprovalStatus.APPROVED;
+import static br.com.guilhermebehs.ftgo.payment.domain.enums.ApprovalStatus.DENIED;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;

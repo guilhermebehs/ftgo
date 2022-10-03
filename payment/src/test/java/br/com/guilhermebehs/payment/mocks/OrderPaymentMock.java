@@ -1,6 +1,6 @@
 package br.com.guilhermebehs.payment.mocks;
 
-import br.com.guilhermebehs.payment.domain.entities.OrderPayment;
+import br.com.guilhermebehs.ftgo.payment.domain.entities.OrderPayment;
 
 import java.time.LocalDateTime;
 

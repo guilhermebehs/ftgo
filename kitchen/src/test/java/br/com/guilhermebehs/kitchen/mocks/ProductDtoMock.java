@@ -1,6 +1,6 @@
 package br.com.guilhermebehs.kitchen.mocks;
 
-import br.com.guilhermebehs.kitchen.domain.dtos.CreateProductDto;
+import br.com.guilhermebehs.ftgo.kitchen.domain.dtos.CreateProductDto;
 
 public class ProductDtoMock {
 

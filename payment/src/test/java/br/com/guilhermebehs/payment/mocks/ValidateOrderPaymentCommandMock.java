@@ -1,8 +1,7 @@
 package br.com.guilhermebehs.payment.mocks;
 
-import br.com.guilhermebehs.payment.domain.commands.ValidateOrderPaymentCommand;
+import br.com.guilhermebehs.ftgo.payment.domain.commands.ValidateOrderPaymentCommand;
 
-import java.time.LocalDateTime;
 public class ValidateOrderPaymentCommandMock {
 
 

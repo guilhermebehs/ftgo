@@ -1,13 +1,14 @@
 package br.com.guilhermebehs.payment.domain.entities;
 
 
+import br.com.guilhermebehs.ftgo.payment.domain.entities.OrderPayment;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
-import static br.com.guilhermebehs.payment.domain.enums.ApprovalStatus.APPROVED;
-import static br.com.guilhermebehs.payment.domain.enums.ApprovalStatus.DENIED;
+import static br.com.guilhermebehs.ftgo.payment.domain.enums.ApprovalStatus.APPROVED;
+import static br.com.guilhermebehs.ftgo.payment.domain.enums.ApprovalStatus.DENIED;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;

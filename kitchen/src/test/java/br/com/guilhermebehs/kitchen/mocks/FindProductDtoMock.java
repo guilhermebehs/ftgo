@@ -1,6 +1,6 @@
 package br.com.guilhermebehs.kitchen.mocks;
 
-import br.com.guilhermebehs.kitchen.adapters.in.http.dtos.FindProductDto;
+import br.com.guilhermebehs.ftgo.kitchen.adapters.in.http.dtos.FindProductDto;
 
 public class FindProductDtoMock {
 

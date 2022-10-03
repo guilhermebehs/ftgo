@@ -1,7 +1,8 @@
 package br.com.guilhermebehs.kitchen.domain.services;
 
-import br.com.guilhermebehs.kitchen.domain.entities.Product;
-import br.com.guilhermebehs.kitchen.domain.ports.repositories.ProductRepository;
+import br.com.guilhermebehs.ftgo.kitchen.domain.entities.Product;
+import br.com.guilhermebehs.ftgo.kitchen.domain.ports.repositories.ProductRepository;
+import br.com.guilhermebehs.ftgo.kitchen.domain.services.CreateProductService;
 import br.com.guilhermebehs.kitchen.mocks.ProductDtoMock;
 import br.com.guilhermebehs.kitchen.mocks.ProductMock;
 import org.junit.jupiter.api.BeforeEach;
