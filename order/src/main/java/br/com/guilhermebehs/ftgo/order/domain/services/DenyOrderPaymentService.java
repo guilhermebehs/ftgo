@@ -2,31 +2,31 @@ package br.com.guilhermebehs.ftgo.order.domain.services;
 
 import br.com.guilhermebehs.ftgo.order.domain.entities.OrderItem;
 import br.com.guilhermebehs.ftgo.order.domain.entities.exceptions.OrderNotFoundException;
-import br.com.guilhermebehs.ftgo.order.domain.events.OrderPaymentApprovedEvent;
+import br.com.guilhermebehs.ftgo.order.domain.events.OrderPaymentDeniedEvent;
 import br.com.guilhermebehs.ftgo.order.domain.ports.KitchenService;
 import br.com.guilhermebehs.ftgo.order.domain.ports.OrderRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ApproveOrderPaymentService {
+public class DenyOrderPaymentService {
 
     private final OrderRepository orderRepository;
     private final KitchenService kitchenService;
 
-    public ApproveOrderPaymentService(OrderRepository orderRepository, KitchenService kitchenService) {
+    public DenyOrderPaymentService(OrderRepository orderRepository, KitchenService kitchenService) {
         this.orderRepository = orderRepository;
         this.kitchenService = kitchenService;
     }
 
 
-    public void approve(OrderPaymentApprovedEvent orderPaymentApprovedEvent){
-        var order = orderRepository.findById(orderPaymentApprovedEvent.getOrderId())
-                .orElseThrow(()-> new OrderNotFoundException("order "+orderPaymentApprovedEvent.getOrderId()+" not found"));
+    public void deny(OrderPaymentDeniedEvent orderPaymentDeniedEvent){
+        var order = orderRepository.findById(orderPaymentDeniedEvent.getOrderId())
+                .orElseThrow(()-> new OrderNotFoundException("order "+orderPaymentDeniedEvent.getOrderId()+" not found"));
 
-        order.approvePayment();
+        order.denyPayment();
         orderRepository.save(order);
         for(OrderItem orderItem: order.getItems())
-           kitchenService.confirmBookedProductAmount(orderItem.getDescription(), order.getKitchen(), orderItem.getAmount());
+           kitchenService.cancelBookedProductAmount(orderItem.getDescription(), order.getKitchen(), orderItem.getAmount());
 
     }
 }

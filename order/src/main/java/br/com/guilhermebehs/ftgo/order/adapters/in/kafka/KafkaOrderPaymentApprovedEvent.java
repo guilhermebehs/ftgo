@@ -22,9 +22,8 @@ public class KafkaOrderPaymentApprovedEvent {
     @KafkaListener(topics = "order_payment_approved", groupId = "groupId")
     public void listen(String payload){
 
-        OrderPaymentApprovedEvent orderPaymentApprovedEvent = null;
         try {
-            orderPaymentApprovedEvent = objectMapper
+           var orderPaymentApprovedEvent = objectMapper
                     .readValue(payload, OrderPaymentApprovedEvent.class);
 
             approveOrderPaymentService.approve(orderPaymentApprovedEvent);

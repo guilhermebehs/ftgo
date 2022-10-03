@@ -154,7 +154,7 @@ class OrderTest {
                     "123456"
             );
             changeOrderStatus(order, OrderStatus.CANCELED);
-            order.preparing();
+            order.approvePayment();
         });
 
         assertThat(exception.getMessage()).isEqualTo("order status not allowed in this step");
@@ -162,8 +162,8 @@ class OrderTest {
 
 
     @Test
-    @DisplayName("should throw when setting status to 'PAYMENT_REJECTED' on illegal step")
-    public void shouldThrowWhenSettingStatusToPaymentRejectedOnIllegalStep(){
+    @DisplayName("should throw when setting status to 'PAYMENT_DENIED' on illegal step")
+    public void shouldThrowWhenSettingStatusToPaymentDeniedOnIllegalStep(){
 
         var exception = assertThrows(IllegalStateException.class,()->{
 
@@ -190,7 +190,7 @@ class OrderTest {
                     "123456"
             );
             changeOrderStatus(order, OrderStatus.CANCELED);
-            order.paymentRejected();
+            order.denyPayment();
         });
 
         assertThat(exception.getMessage()).isEqualTo("order status not allowed in this step");

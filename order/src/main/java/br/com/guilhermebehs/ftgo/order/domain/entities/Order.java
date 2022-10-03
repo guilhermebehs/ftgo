@@ -48,16 +48,16 @@ public class Order {
                 .reduce(0D, (total, price)-> total + price);
     }
 
-    public void preparing(){
+    public void approvePayment(){
         if(!orderStatus.equals(OrderStatus.PAYMENT_PENDING))
             throw new IllegalStateException("order status not allowed in this step");
         orderStatus = OrderStatus.PREPARING;
     }
 
-    public void paymentRejected(){
+    public void denyPayment(){
         if(!orderStatus.equals(OrderStatus.PAYMENT_PENDING))
             throw new IllegalStateException("order status not allowed in this step");
-        orderStatus = OrderStatus.PAYMENT_REJECTED;
+        orderStatus = OrderStatus.PAYMENT_DENIED;
     }
 
     public void delivered(){

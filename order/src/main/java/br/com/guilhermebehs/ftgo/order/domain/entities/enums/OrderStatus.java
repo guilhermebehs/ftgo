@@ -3,7 +3,7 @@ package br.com.guilhermebehs.ftgo.order.domain.entities.enums;
 public enum OrderStatus {
 
     PAYMENT_PENDING,
-    PAYMENT_REJECTED,
+    PAYMENT_DENIED,
     PREPARING,
     ON_THE_WAY,
     CANCELED,
