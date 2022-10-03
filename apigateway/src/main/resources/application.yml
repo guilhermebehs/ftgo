@@ -11,9 +11,9 @@ spring:
     gateway:
       routes:
         - id: order-ms
-          uri: http://localhost:8763
+          uri: lb://order-ms
           predicates:
-            - Path=/orders
+            - Path=/orders/**
 eureka:
   client:
     serviceUrl:
