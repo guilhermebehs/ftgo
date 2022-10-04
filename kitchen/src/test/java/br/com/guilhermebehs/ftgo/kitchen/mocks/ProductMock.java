@@ -1,4 +1,4 @@
-package br.com.guilhermebehs.kitchen.mocks;
+package br.com.guilhermebehs.ftgo.kitchen.mocks;
 
 import br.com.guilhermebehs.ftgo.kitchen.adapters.out.collections.ProductId;
 import br.com.guilhermebehs.ftgo.kitchen.domain.entities.Product;

@@ -1,10 +1,9 @@
-package br.com.guilhermebehs.kitchen.domain.services;
+package br.com.guilhermebehs.ftgo.kitchen.domain.services;
 
 import br.com.guilhermebehs.ftgo.kitchen.domain.entities.Product;
 import br.com.guilhermebehs.ftgo.kitchen.domain.exceptions.ProductNotFoundException;
 import br.com.guilhermebehs.ftgo.kitchen.domain.ports.repositories.ProductRepository;
-import br.com.guilhermebehs.ftgo.kitchen.domain.services.FindProductService;
-import br.com.guilhermebehs.kitchen.mocks.ProductMock;
+import br.com.guilhermebehs.ftgo.kitchen.mocks.ProductMock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

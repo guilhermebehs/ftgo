@@ -1,11 +1,10 @@
-package br.com.guilhermebehs.kitchen.domain.services;
+package br.com.guilhermebehs.ftgo.kitchen.domain.services;
 
 import br.com.guilhermebehs.ftgo.kitchen.adapters.out.collections.ProductId;
 import br.com.guilhermebehs.ftgo.kitchen.domain.entities.Product;
 import br.com.guilhermebehs.ftgo.kitchen.domain.exceptions.ProductNotFoundException;
 import br.com.guilhermebehs.ftgo.kitchen.domain.ports.repositories.ProductRepository;
-import br.com.guilhermebehs.ftgo.kitchen.domain.services.ConfirmBookedProductAmountService;
-import br.com.guilhermebehs.kitchen.mocks.ProductMock;
+import br.com.guilhermebehs.ftgo.kitchen.mocks.ProductMock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,12 +19,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest(classes = ConfirmBookedProductAmountService.class)
-@DisplayName("ConfirmBookedProductAmountService")
-class ConfirmBookedProductAmountServiceTest {
+@SpringBootTest(classes = CancelBookedProductAmountService.class)
+@DisplayName("CancelBookedProductAmountService")
+class CancelBookedProductAmountServiceTest {
 
     @Autowired
-    private ConfirmBookedProductAmountService confirmBookedProductAmountService;
+    private CancelBookedProductAmountService cancelBookedProductAmountService;
 
     @MockBean
     private ProductRepository productRepository;
@@ -37,17 +36,18 @@ class ConfirmBookedProductAmountServiceTest {
 
         productMock = ProductMock.mockWithBookedAmount();
 
+
         when(productRepository.findById(any())).thenReturn(Optional.of(productMock));
     }
 
 
 
     @Test
-    @DisplayName("should confirm booked amount correctly")
-    public void shouldConfirmBookedAmountCorrectly(){
+    @DisplayName("should cancel booked amount correctly")
+    public void shouldCancelBookedAmountCorrectly(){
 
         var productId = new ProductId("some product", "some kitchen");
-        assertDoesNotThrow(()-> confirmBookedProductAmountService.confirm(productId, 1));
+        assertDoesNotThrow(()-> cancelBookedProductAmountService.cancel(productId, 1));
 
     }
 
@@ -59,6 +59,6 @@ class ConfirmBookedProductAmountServiceTest {
 
         var productId = new ProductId("some product", "some kitchen");
         assertThrows(ProductNotFoundException.class,
-                ()-> confirmBookedProductAmountService.confirm(productId, 1));
+                ()-> cancelBookedProductAmountService.cancel(productId, 1));
     }
 }

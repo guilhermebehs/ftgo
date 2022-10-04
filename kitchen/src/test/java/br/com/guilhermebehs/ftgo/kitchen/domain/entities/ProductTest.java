@@ -1,4 +1,4 @@
-package br.com.guilhermebehs.kitchen.domain.entities;
+package br.com.guilhermebehs.ftgo.kitchen.domain.entities;
 
 import br.com.guilhermebehs.ftgo.kitchen.adapters.out.collections.ProductId;
 import br.com.guilhermebehs.ftgo.kitchen.domain.entities.Product;

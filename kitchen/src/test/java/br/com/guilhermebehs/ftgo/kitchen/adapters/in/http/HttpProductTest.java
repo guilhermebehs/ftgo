@@ -1,11 +1,10 @@
-package br.com.guilhermebehs.kitchen.adapters.in.http;
+package br.com.guilhermebehs.ftgo.kitchen.adapters.in.http;
 
-import br.com.guilhermebehs.ftgo.kitchen.adapters.in.http.HttpProduct;
 import br.com.guilhermebehs.ftgo.kitchen.domain.exceptions.ProductNotFoundException;
 import br.com.guilhermebehs.ftgo.kitchen.domain.services.*;
-import br.com.guilhermebehs.kitchen.mocks.FindProductDtoMock;
-import br.com.guilhermebehs.kitchen.mocks.ProductDtoMock;
-import br.com.guilhermebehs.kitchen.mocks.ProductMock;
+import br.com.guilhermebehs.ftgo.kitchen.mocks.ProductDtoMock;
+import br.com.guilhermebehs.ftgo.kitchen.mocks.FindProductDtoMock;
+import br.com.guilhermebehs.ftgo.kitchen.mocks.ProductMock;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

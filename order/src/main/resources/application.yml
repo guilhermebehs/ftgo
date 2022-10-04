@@ -1,27 +1,27 @@
 server:
-  port: 8763
+  port: ${PORT:8763}
 spring:
   application:
     name: order-ms
   data:
     mongodb:
-      host: localhost
-      port: 27017
+      host: ${MONGO_HOST:localhost}
+      port: ${MONGO_PORT:27017}
       database: order-ms
       auto-index-creation: false
   kafka:
     producer:
-      bootstrap-servers: localhost:29092
+      bootstrap-servers: ${KAFKA_URL:localhost:29092}
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
     consumer:
-      bootstrap-servers: localhost:29092
+      bootstrap-servers: ${KAFKA_URL:localhost:29092}
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://${EUREKA_URL:localhost:8761}/eureka
   instance:
     preferIpAddress: true
 
