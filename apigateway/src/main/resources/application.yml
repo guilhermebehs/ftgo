@@ -21,3 +21,5 @@ eureka:
   instance:
     preferIpAddress: true
 
+
+basic-auth: Z3VpbGhlcm1lOm1pY3Jvc2VydmljZXM=
