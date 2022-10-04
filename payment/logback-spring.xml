@@ -18,20 +18,7 @@
         </encoder>
     </appender>
 
-    <appender name="TIME_BASED_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/app-logs/adapter-linx-ms/adapter-linx-ms.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- daily rollover -->
-            <fileNamePattern>/app-logs/adapter-linx-ms/adapter-linx-ms.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
-            <maxHistory>30</maxHistory>
-        </rollingPolicy>
-
-        <encoder>
-            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
-        </encoder>
-    </appender>
     <root level="INFO">
         <appender-ref ref="console" />
-        <appender-ref ref="TIME_BASED_FILE"/>
     </root>
 </configuration>
