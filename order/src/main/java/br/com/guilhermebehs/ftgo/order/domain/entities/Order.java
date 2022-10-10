@@ -51,7 +51,7 @@ public class Order {
     public void approvePayment(){
         if(!orderStatus.equals(OrderStatus.PAYMENT_PENDING))
             throw new IllegalStateException("order status not allowed in this step");
-        orderStatus = OrderStatus.PREPARING;
+        orderStatus = OrderStatus.PAYMENT_APPROVED;
     }
 
     public void denyPayment(){
