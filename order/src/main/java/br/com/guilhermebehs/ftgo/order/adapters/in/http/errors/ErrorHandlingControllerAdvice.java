@@ -2,6 +2,7 @@ package br.com.guilhermebehs.ftgo.order.adapters.in.http.errors;
 
 import br.com.guilhermebehs.ftgo.order.domain.entities.exceptions.InternalErrorException;
 import br.com.guilhermebehs.ftgo.order.domain.entities.exceptions.InvalidItemException;
+import br.com.guilhermebehs.ftgo.order.domain.entities.exceptions.OrderNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -62,6 +63,16 @@ class ErrorHandlingControllerAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     ValidationErrorResponse onInvalidItemException(InvalidItemException e) {
+        ValidationErrorResponse error = new ValidationErrorResponse();
+        error.getErrors().add(e.getMessage());
+        return error;
+    }
+
+
+    @ExceptionHandler(OrderNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    ValidationErrorResponse onOrderNotFoundException(OrderNotFoundException e) {
         ValidationErrorResponse error = new ValidationErrorResponse();
         error.getErrors().add(e.getMessage());
         return error;

@@ -1,15 +1,14 @@
 package br.com.guilhermebehs.ftgo.order.mocks;
 
 import br.com.guilhermebehs.ftgo.order.domain.entities.dtos.AddressDto;
-import br.com.guilhermebehs.ftgo.order.domain.entities.dtos.CreateOrderDto;
+import br.com.guilhermebehs.ftgo.order.domain.entities.dtos.OrderDetailsDto;
 import br.com.guilhermebehs.ftgo.order.domain.entities.dtos.OrderItemDto;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
-public class CreateOrderDtoMock {
+public class OrderDetailsDtoMock {
 
-    public static CreateOrderDto mock(){
+    public static OrderDetailsDto mock(){
 
         var address = new AddressDto(
                 "some street",
@@ -23,14 +22,6 @@ public class CreateOrderDtoMock {
         var items = List.of(new OrderItemDto("some item", 10D, 1));
 
 
-        return new CreateOrderDto(
-                "some customer name",
-                address,
-                LocalDateTime.now().plusHours(1),
-                items,
-                "some kitchen",
-                "123456"
-        );
-
+        return new OrderDetailsDto("some order id", address, items, "some kitchen");
     }
 }

@@ -2,8 +2,11 @@ package br.com.guilhermebehs.ftgo.order.adapters.in.http;
 
 import br.com.guilhermebehs.ftgo.order.domain.entities.OrderItem;
 import br.com.guilhermebehs.ftgo.order.domain.entities.dtos.OrderItemDto;
+import br.com.guilhermebehs.ftgo.order.domain.entities.exceptions.OrderNotFoundException;
 import br.com.guilhermebehs.ftgo.order.domain.services.CreateOrderService;
+import br.com.guilhermebehs.ftgo.order.domain.services.GetOrderDetailsService;
 import br.com.guilhermebehs.ftgo.order.mocks.CreateOrderDtoMock;
+import br.com.guilhermebehs.ftgo.order.mocks.OrderDetailsDtoMock;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -21,6 +24,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -37,9 +41,14 @@ class HttpOrderTest {
     @MockBean
     private CreateOrderService createOrderService;
 
+    @MockBean
+    private GetOrderDetailsService getOrderDetailsService;
+
     @BeforeEach
     void setUp() {
+
         when(createOrderService.create(any())).thenReturn("any order id");
+        when(getOrderDetailsService.get(any())).thenReturn(OrderDetailsDtoMock.mock());
     }
 
     private void setField(Object obj, String fieldName, Object fieldValue) throws NoSuchFieldException, IllegalAccessException {
@@ -51,7 +60,7 @@ class HttpOrderTest {
 
     @Nested
     @DisplayName("POST /orders")
-    class PostProducts {
+    class PostOrders {
 
         @Test
         @DisplayName("should return 201 and an order id when body is valid")
@@ -616,6 +625,32 @@ class HttpOrderTest {
                     .andExpect(content().string(containsString("'credit_card' length must be between 4 and 8")));;
         }
 
+    }
+
+    @Nested
+    @DisplayName("GET /orders/{order id}/details")
+    class GetOrderDetails {
+        @Test
+        @DisplayName("should return 200 when id is valid")
+        public void shouldReturn200WhenIdIsValid() throws Exception {
+
+            mvc.perform(get("/orders/some_id/details")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isOk());
+        }
+
+        @Test
+        @DisplayName("should return 404 when id is not found")
+        public void shouldReturn404WhenIdIsNotFound() throws Exception {
+
+            when(getOrderDetailsService.get(any())).thenThrow(new OrderNotFoundException("error"));
+
+            mvc.perform(get("/orders/some_id/details")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isNotFound());
+        }
     }
 
 
