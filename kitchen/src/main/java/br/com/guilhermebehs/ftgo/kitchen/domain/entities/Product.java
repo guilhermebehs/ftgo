@@ -1,6 +1,6 @@
 package br.com.guilhermebehs.ftgo.kitchen.domain.entities;
 
-import br.com.guilhermebehs.ftgo.kitchen.adapters.out.collections.ProductId;
+import br.com.guilhermebehs.ftgo.kitchen.adapters.out.mongo.collections.ProductId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

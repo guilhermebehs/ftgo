@@ -4,7 +4,7 @@ import br.com.guilhermebehs.ftgo.kitchen.adapters.in.http.dtos.FindProductDto;
 import br.com.guilhermebehs.ftgo.kitchen.domain.dtos.CreateProductDto;
 import br.com.guilhermebehs.ftgo.kitchen.domain.services.*;
 import br.com.guilhermebehs.ftgo.kitchen.adapters.in.http.mappers.FindProductDtoMapper;
-import br.com.guilhermebehs.ftgo.kitchen.adapters.out.collections.ProductId;
+import br.com.guilhermebehs.ftgo.kitchen.adapters.out.mongo.collections.ProductId;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

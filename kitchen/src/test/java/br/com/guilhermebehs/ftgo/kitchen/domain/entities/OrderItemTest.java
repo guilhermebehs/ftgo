@@ -16,7 +16,7 @@ class OrderItemTest {
     public void shouldChangeAmountCorrectly(){
 
         assertDoesNotThrow(()->{
-           var item = new OrderItem("some description", 10D, 1);
+           var item = new OrderItem("some description", 1);
            item.changeAmount(3);
            assertThat(item.getAmount()).isEqualTo(3);
         });
@@ -29,7 +29,7 @@ class OrderItemTest {
     public void shouldThrowWhenChangingAmountTo0(){
 
         var exception = assertThrows(IllegalStateException.class,()->{
-            var item = new OrderItem("some description", 10D, 1);
+            var item = new OrderItem("some description", 1);
             item.changeAmount(0);
         });
 
@@ -43,7 +43,7 @@ class OrderItemTest {
     public void shouldThrowWhenChangingAmountToANegativeValue(){
 
         var exception = assertThrows(IllegalStateException.class,()->{
-            var item = new OrderItem("some description", 10D, 1);
+            var item = new OrderItem("some description",  1);
             item.changeAmount(-1);
         });
 

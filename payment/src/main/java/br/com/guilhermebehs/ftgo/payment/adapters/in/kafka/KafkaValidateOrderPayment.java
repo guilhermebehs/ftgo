@@ -19,7 +19,7 @@ public class KafkaValidateOrderPayment {
         this.objectMapper = objectMapper;
     }
 
-    @KafkaListener(topics = "validate_order_payment", groupId = "groupId")
+    @KafkaListener(topics = "validate_order_payment", groupId = "paymentGroupId")
     public void listen(String payload){
         try {
             var validateOrderPaymentCommand = objectMapper

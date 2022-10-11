@@ -1,4 +1,4 @@
-package br.com.guilhermebehs.ftgo.kitchen.adapters.out.collections;
+package br.com.guilhermebehs.ftgo.kitchen.adapters.out.mongo.collections;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

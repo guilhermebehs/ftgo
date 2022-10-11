@@ -1,10 +1,10 @@
-package br.com.guilhermebehs.ftgo.kitchen.adapters.out.repositories;
+package br.com.guilhermebehs.ftgo.kitchen.adapters.out.mongo.repositories;
 
 import br.com.guilhermebehs.ftgo.kitchen.domain.entities.Product;
 import br.com.guilhermebehs.ftgo.kitchen.domain.ports.repositories.ProductRepository;
-import br.com.guilhermebehs.ftgo.kitchen.adapters.out.collections.ProductCollection;
-import br.com.guilhermebehs.ftgo.kitchen.adapters.out.collections.ProductId;
-import br.com.guilhermebehs.ftgo.kitchen.adapters.out.mappers.ProductCollectionMapper;
+import br.com.guilhermebehs.ftgo.kitchen.adapters.out.mongo.collections.ProductCollection;
+import br.com.guilhermebehs.ftgo.kitchen.adapters.out.mongo.collections.ProductId;
+import br.com.guilhermebehs.ftgo.kitchen.adapters.out.mongo.mappers.ProductCollectionMapper;
 import br.com.guilhermebehs.ftgo.kitchen.domain.entities.ProductCollectionId;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;

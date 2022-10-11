@@ -1,7 +1,6 @@
 package br.com.guilhermebehs.ftgo.kitchen.domain.entities;
 
-import br.com.guilhermebehs.ftgo.kitchen.adapters.out.collections.ProductId;
-import br.com.guilhermebehs.ftgo.kitchen.domain.entities.Product;
+import br.com.guilhermebehs.ftgo.kitchen.adapters.out.mongo.collections.ProductId;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

@@ -40,6 +40,8 @@ services:
       - "8761:8761"
     networks:
       - ftgo
+    depends_on:
+      - kafka
 
   api-gateway:
     build:
@@ -51,6 +53,8 @@ services:
       - "8000:8000"
     networks:
       - ftgo
+    depends_on:
+      - service-discovery
 
   order:
     build:
@@ -63,6 +67,10 @@ services:
       - EUREKA_URL=service-discovery:8761
     networks:
       - ftgo
+    depends_on:
+      - service-discovery
+      - kafka
+      - mongo
 
   kitchen:
     build:
@@ -71,9 +79,14 @@ services:
     environment:
         - MONGO_HOST=mongo
         - MONGO_PORT=27017
+        - KAFKA_URL=kafka:29092
         - EUREKA_URL=service-discovery:8761
     networks:
         - ftgo
+    depends_on:
+      - service-discovery
+      - kafka
+      - mongo
 
   payment:
     build:
@@ -85,5 +98,9 @@ services:
       - KAFKA_URL=kafka:29092
     networks:
       - ftgo
+    depends_on:
+      - service-discovery
+      - kafka
+      - mongo
 
 

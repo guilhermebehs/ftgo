@@ -38,7 +38,7 @@ class OrderTest {
                     "some country"
             );
 
-            var items = List.of(new OrderItem("some item", 10D, 1));
+            var items = List.of(new OrderItem("some item", 1));
 
 
             new Order(
@@ -69,7 +69,7 @@ class OrderTest {
                     "some country"
             );
 
-            var items = List.of(new OrderItem("some item", 10D, 1));
+            var items = List.of(new OrderItem("some item", 1));
 
 
             var order =  new Order(
@@ -102,7 +102,7 @@ class OrderTest {
                             "some country"
                     );
 
-                    var items = List.of(new OrderItem("some item", 10D, 1));
+                    var items = List.of(new OrderItem("some item", 1));
 
 
                     var order =  new Order(
@@ -136,7 +136,7 @@ class OrderTest {
                     "some country"
             );
 
-            var items = List.of(new OrderItem("some item", 10D, 1));
+            var items = List.of(new OrderItem("some item", 1));
 
 
             var order =  new Order(

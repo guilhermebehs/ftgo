@@ -7,6 +7,16 @@ spring:
       port: ${MONGO_PORT:27017}
       database: kitchen-ms
       auto-index-creation: false
+  kafka:
+    producer:
+      bootstrap-servers: ${KAFKA_URL:localhost:29092}
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      bootstrap-servers: ${KAFKA_URL:localhost:29092}
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
 eureka:
   client:
     serviceUrl:
@@ -16,3 +26,6 @@ eureka:
     hostname: kitchen-ms
 server:
   port: ${PORT:8081}
+
+order-ms:
+  host: http://order-ms

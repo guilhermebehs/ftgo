@@ -1,7 +1,7 @@
-package br.com.guilhermebehs.ftgo.order.adapters.in.kafka;
+package br.com.guilhermebehs.ftgo.kitchen.adapters.in.kafka;
 
-import br.com.guilhermebehs.ftgo.order.domain.events.OrderPaymentApprovedEvent;
-import br.com.guilhermebehs.ftgo.order.domain.services.ApproveOrderPaymentService;
+import br.com.guilhermebehs.ftgo.kitchen.domain.events.OrderPaymentApprovedEvent;
+import br.com.guilhermebehs.ftgo.kitchen.domain.services.CreateOrderService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -10,23 +10,23 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaOrderPaymentApprovedEvent {
 
-    private final ApproveOrderPaymentService approveOrderPaymentService;
+    private final CreateOrderService createOrderService;
     private final ObjectMapper objectMapper;
 
-    public KafkaOrderPaymentApprovedEvent(ApproveOrderPaymentService approveOrderPaymentService,
+    public KafkaOrderPaymentApprovedEvent(CreateOrderService createOrderService,
                                           ObjectMapper objectMapper) {
-        this.approveOrderPaymentService = approveOrderPaymentService;
+        this.createOrderService = createOrderService;
         this.objectMapper = objectMapper;
     }
 
-    @KafkaListener(topics = "order_payment_approved", groupId = "orderGroupId")
+    @KafkaListener(topics = "order_payment_approved", groupId = "kitchenGroupId")
     public void listen(String payload){
 
         try {
            var orderPaymentApprovedEvent = objectMapper
                     .readValue(payload, OrderPaymentApprovedEvent.class);
 
-            approveOrderPaymentService.approve(orderPaymentApprovedEvent);
+            createOrderService.create(orderPaymentApprovedEvent);
 
         } catch (JsonProcessingException e) {
             e.printStackTrace();

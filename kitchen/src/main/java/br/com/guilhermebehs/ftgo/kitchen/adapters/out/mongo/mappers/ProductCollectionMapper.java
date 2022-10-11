@@ -1,9 +1,9 @@
-package br.com.guilhermebehs.ftgo.kitchen.adapters.out.mappers;
+package br.com.guilhermebehs.ftgo.kitchen.adapters.out.mongo.mappers;
 
-import br.com.guilhermebehs.ftgo.kitchen.adapters.out.collections.ProductCollection;
+import br.com.guilhermebehs.ftgo.kitchen.adapters.out.mongo.collections.ProductCollection;
 import br.com.guilhermebehs.ftgo.kitchen.domain.entities.Product;
 import br.com.guilhermebehs.ftgo.kitchen.domain.entities.ProductCollectionId;
-import br.com.guilhermebehs.ftgo.kitchen.adapters.out.collections.ProductId;
+import br.com.guilhermebehs.ftgo.kitchen.adapters.out.mongo.collections.ProductId;
 
 public class ProductCollectionMapper {
 

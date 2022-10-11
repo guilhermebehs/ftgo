@@ -1,5 +1,6 @@
 package br.com.guilhermebehs.ftgo.kitchen.adapters.in.http.errors;
 
+import br.com.guilhermebehs.ftgo.kitchen.domain.exceptions.InternalErrorException;
 import br.com.guilhermebehs.ftgo.kitchen.domain.exceptions.ProductNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -63,6 +64,14 @@ class ErrorHandlingControllerAdvice {
     ValidationErrorResponse onProductNotFoundException(ProductNotFoundException e) {
         ValidationErrorResponse error = new ValidationErrorResponse();
         error.getErrors().add(e.getMessage());
+        return error;
+    }
+
+    @ExceptionHandler(InternalErrorException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    ValidationErrorResponse onInternalErrorException(InternalErrorException e) {
+        ValidationErrorResponse error = new ValidationErrorResponse();
         return error;
     }
 

@@ -19,7 +19,7 @@ public class KafkaOrderPaymentDeniedEvent {
         this.objectMapper = objectMapper;
     }
 
-    @KafkaListener(topics = "order_payment_denied", groupId = "groupId")
+    @KafkaListener(topics = "order_payment_denied", groupId = "orderGroupId")
     public void listen(String payload){
 
         try {
