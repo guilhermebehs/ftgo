@@ -12,9 +12,8 @@ import java.time.LocalDateTime;
 @Getter
 @ToString
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class OrderPaymentApprovedEvent {
+public class OrderDeniedEvent {
 
     private String orderId;
     private LocalDateTime ocurredOn;
-
 }

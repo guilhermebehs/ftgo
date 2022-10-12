@@ -35,7 +35,7 @@ services:
   service-discovery:
     build:
       context: .
-      dockerfile: ./dockerfiles/Dockerfile-discovery
+      dockerfile: ./dockerfiles/Dockerfile-service-discovery
     ports:
       - "8761:8761"
     networks:

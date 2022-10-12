@@ -3,9 +3,11 @@ package br.com.guilhermebehs.ftgo.kitchen.domain.entities;
 import br.com.guilhermebehs.ftgo.kitchen.adapters.out.mongo.collections.ProductId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
 @AllArgsConstructor
+@ToString
 public class Product {
 
     private ProductId productId;

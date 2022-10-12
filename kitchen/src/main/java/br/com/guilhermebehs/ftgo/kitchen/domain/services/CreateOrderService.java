@@ -2,7 +2,7 @@ package br.com.guilhermebehs.ftgo.kitchen.domain.services;
 
 import br.com.guilhermebehs.ftgo.kitchen.domain.events.OrderPaymentApprovedEvent;
 import br.com.guilhermebehs.ftgo.kitchen.domain.mappers.OrderMapper;
-import br.com.guilhermebehs.ftgo.kitchen.domain.ports.OrderService;
+import br.com.guilhermebehs.ftgo.kitchen.domain.ports.services.OrderService;
 import br.com.guilhermebehs.ftgo.kitchen.domain.ports.repositories.OrderRepository;
 import org.springframework.stereotype.Service;
 

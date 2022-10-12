@@ -10,10 +10,20 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: order-ms
+        - id: order-creation
           uri: lb://order-ms
           predicates:
             - Path=/orders/**
+            - Method=POST
+        - id: order-acceptance
+          uri: lb://kitchen-ms
+          predicates:
+            - Path=/orders/**
+            - Method=PATCH
+        - id: product-creation
+          uri: lb://kitchen-ms
+          predicates:
+            - Path=/products/**
 eureka:
   client:
     serviceUrl:

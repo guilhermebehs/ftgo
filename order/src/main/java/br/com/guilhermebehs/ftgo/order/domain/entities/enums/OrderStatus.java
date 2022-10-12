@@ -6,7 +6,7 @@ public enum OrderStatus {
     PAYMENT_APPROVED,
     PAYMENT_DENIED,
     PREPARING,
-    ON_THE_WAY,
+    DENIED_BY_KITCHEN,
     CANCELED,
     NO_STOCK,
     DELIVERED;

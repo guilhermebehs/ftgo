@@ -1,4 +1,4 @@
-package br.com.guilhermebehs.ftgo.kitchen.domain.events;
+package br.com.guilhermebehs.ftgo.order.domain.events;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -12,9 +12,8 @@ import java.time.LocalDateTime;
 @Getter
 @ToString
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class OrderPaymentApprovedEvent {
+public class OrderConfirmedEvent {
 
     private String orderId;
     private LocalDateTime ocurredOn;
-
 }

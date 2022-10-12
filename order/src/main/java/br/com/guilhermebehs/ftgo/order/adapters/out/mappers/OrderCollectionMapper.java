@@ -37,6 +37,8 @@ public class OrderCollectionMapper {
                 address,
                 orderCollection.getOrderCreatedOn(),
                 orderCollection.getDeliveryDateForecast(),
+                orderCollection.getDeliveryDate(),
+                orderCollection.getOrderStatus(),
                 orderCollection.getKitchen(),
                 items,
                 orderCollection.getCreditCard()

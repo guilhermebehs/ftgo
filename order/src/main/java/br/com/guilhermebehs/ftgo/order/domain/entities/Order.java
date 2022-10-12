@@ -1,13 +1,17 @@
 package br.com.guilhermebehs.ftgo.order.domain.entities;
 
 import br.com.guilhermebehs.ftgo.order.domain.entities.enums.OrderStatus;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
 
 @Getter
+@ToString
+@AllArgsConstructor
 public class Order {
 
     private String orderId;
@@ -48,6 +52,18 @@ public class Order {
                 .reduce(0D, (total, price)-> total + price);
     }
 
+    public void confirm(){
+        if(!orderStatus.equals(OrderStatus.PAYMENT_APPROVED))
+            throw new IllegalStateException("order status not allowed in this step");
+        orderStatus = OrderStatus.PREPARING;
+    }
+
+    public void denyByKitchen(){
+        if(!orderStatus.equals(OrderStatus.PAYMENT_APPROVED))
+            throw new IllegalStateException("order status not allowed in this step");
+        orderStatus = OrderStatus.DENIED_BY_KITCHEN;
+    }
+
     public void approvePayment(){
         if(!orderStatus.equals(OrderStatus.PAYMENT_PENDING))
             throw new IllegalStateException("order status not allowed in this step");
@@ -61,7 +77,7 @@ public class Order {
     }
 
     public void delivered(){
-        if(!orderStatus.equals(OrderStatus.ON_THE_WAY))
+        if(!orderStatus.equals(OrderStatus.PREPARING))
             throw new IllegalStateException("order status not allowed in this step");
         deliveryDate = LocalDateTime.now();
         orderStatus = OrderStatus.DELIVERED;

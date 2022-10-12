@@ -2,7 +2,7 @@ package br.com.guilhermebehs.ftgo.kitchen.adapters.out.http;
 
 import br.com.guilhermebehs.ftgo.kitchen.domain.entities.dtos.OrderDetailsDto;
 import br.com.guilhermebehs.ftgo.kitchen.domain.exceptions.InternalErrorException;
-import br.com.guilhermebehs.ftgo.kitchen.domain.ports.OrderService;
+import br.com.guilhermebehs.ftgo.kitchen.domain.ports.services.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
