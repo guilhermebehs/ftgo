@@ -48,6 +48,9 @@ class HttpProductTest {
     @MockBean
     private ConfirmBookedProductAmountService confirmBookedProductAmountService;
 
+    @MockBean
+    private DeliverOrderService deliverOrderService;
+
     @BeforeEach
     void setUp() {
     }

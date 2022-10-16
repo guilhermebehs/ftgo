@@ -30,7 +30,6 @@ public class DenyOrderService {
                 .orElseThrow(()-> new OrderNotFoundException());
 
         order.deny();
-
         orderRepository.save(order);
 
         order.getItems().forEach((orderItem)->{
@@ -41,7 +40,6 @@ public class DenyOrderService {
             product.increaseAvailableAmount(orderItem.getAmount());
             productRepository.save(product);
         });
-
 
         orderDeniedNotificationService.notify(new OrderDeniedEvent(orderId, LocalDateTime.now()));
     }
