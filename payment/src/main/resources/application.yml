@@ -1,3 +1,5 @@
+server:
+  port: ${PORT:8760}
 spring:
   application:
     name: payment-ms
@@ -16,3 +18,9 @@ spring:
       bootstrap-servers:  ${KAFKA_URL:localhost:29092}
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus

@@ -27,5 +27,11 @@ eureka:
 server:
   port: ${PORT:8081}
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
 order-ms:
   host: http://order-ms
