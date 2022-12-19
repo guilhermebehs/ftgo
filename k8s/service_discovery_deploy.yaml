@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-discovery
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: service-discovery
+      labels:
+        app: service-discovery
+    spec:
+      containers:
+      - name: service-discovery
+        image: guilhermebehs/service-discovery:1.0.0
+        ports:
+          - containerPort: 8761
+        livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8761
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 60
+        readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8761
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 60    
+        resources:
+            requests:
+                cpu: 500m
+            limits:
+                cpu: 600m   
+  selector:
+    matchLabels:
+      app: service-discovery          
