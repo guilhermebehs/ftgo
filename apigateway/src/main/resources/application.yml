@@ -15,6 +15,11 @@ spring:
           predicates:
             - Path=/orders/**
             - Method=POST
+        - id: order-details
+          uri: lb://order-ms
+          predicates:
+            - Path=/orders/**
+            - Method=GET    
         - id: order-status-change
           uri: lb://kitchen-ms
           predicates:
