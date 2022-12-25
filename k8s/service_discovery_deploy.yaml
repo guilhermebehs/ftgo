@@ -21,19 +21,19 @@ spec:
               port: 8761
             periodSeconds: 10
             failureThreshold: 3
-            initialDelaySeconds: 60
+            initialDelaySeconds: 180
         readinessProbe:
             httpGet:
               path: /actuator/health
               port: 8761
             periodSeconds: 10
             failureThreshold: 3
-            initialDelaySeconds: 60    
+            initialDelaySeconds: 180   
         resources:
             requests:
-                cpu: 500m
+                cpu: 250m
             limits:
-                cpu: 600m   
+                cpu: 250m   
   selector:
     matchLabels:
       app: service-discovery          

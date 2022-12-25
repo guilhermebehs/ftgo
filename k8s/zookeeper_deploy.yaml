@@ -22,9 +22,9 @@ spec:
             value: "2000"    
         resources:
               requests:
-                cpu: 300m
+                cpu: 200m
               limits:
-                cpu: 350m
+                cpu: 200m
   selector:
     matchLabels:
         app: zookeeper          
