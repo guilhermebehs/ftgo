@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: payment
+      labels:
+        app: payment
+    spec:    
+      containers:
+      - name: payment
+        image: guilhermebehs/payment:1.0.1
+        ports:
+          - containerPort: 8760
+        env:
+          - name: MONGO_HOST
+            value: "mongo-svc"
+          - name: MONGO_PORT
+            value: "27017"
+          - name: KAFKA_URL
+            value: kafka-svc:29092
+        livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8760
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 180
+        readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8760
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 180    
+        resources:
+            requests:
+                cpu: 250m
+            limits:
+                cpu: 250m    
+  selector:
+    matchLabels:
+      app: payment      

@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kitchen
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: kitchen
+      labels:
+        app: kitchen
+    spec:    
+      containers:
+      - name: kitchen
+        image: guilhermebehs/kitchen:1.0.1
+        ports:
+          - containerPort: 8081
+        env:
+          - name: MONGO_HOST
+            value: "mongo-svc"
+          - name: MONGO_PORT
+            value: "27017"
+          - name: KAFKA_URL
+            value: kafka-svc:29092
+          - name: EUREKA_URL
+            value: service-discovery-svc:8761
+        livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8081
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 210
+        readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8081
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 210 
+        resources:
+            requests:
+                cpu: 275m
+            limits:
+                cpu: 275m      
+  selector:
+    matchLabels:
+      app: kitchen
